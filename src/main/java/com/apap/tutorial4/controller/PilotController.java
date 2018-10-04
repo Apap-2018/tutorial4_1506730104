@@ -50,23 +50,16 @@ public class PilotController {
 		return "view-pilot";
 	}
 	
-	@RequestMapping("pilot/delete/{id}")
-	public String deletePilot(@PathVariable (value = "id") Long id, Model model) {
-		PilotModel deleted = pilotService.deletePilot(id);
+	@RequestMapping("pilot/delete/{licenseNumber}")
+	public String deletePilot(@PathVariable (value = "licenseNumber") String licenseNumber, Model model) {
+		PilotModel deleted = pilotService.deletePilot(licenseNumber);
 		model.addAttribute("pilot", deleted);
 		return "delete-pilot";
 	}
 	
-	@RequestMapping("/pilot/update/id/{id}/new-name/{name}")
-	public String updatePilotName(@PathVariable (value = "id") Long id, @PathVariable String name, Model model) {
-		PilotModel updated = pilotService.updatePilotName(id, name);
-		model.addAttribute("pilot", updated);
-		return "update-pilot";
-	}
-	
-	@RequestMapping("/pilot/update/id/{id}/new-fly-hour/{flyHour}")
-	public String updatePilotFlyHour(@PathVariable (value = "id") Long id, @PathVariable int flyHour, Model model) {
-		PilotModel updated = pilotService.updatePilotFlyHour(id, flyHour);
+	@RequestMapping("/pilot/update/license-number/{licenseNumber}/new-name/{name}/new-fly-hour/{flyHour}")
+	public String updatePilot(@PathVariable (value = "licenseNumber") String licenseNumber, @PathVariable String name, @PathVariable int flyHour, Model model) {
+		PilotModel updated = pilotService.updatePilot(licenseNumber, name, flyHour);
 		model.addAttribute("pilot", updated);
 		return "update-pilot";
 	}

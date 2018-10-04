@@ -27,15 +27,20 @@ public class FlightServiceImpl implements FlightService{
 	}
 
 	@Override
-	public FlightModel deleteFlight(Long id) {
-		List<FlightModel> flightList = flightDb.findAll();
-		for(int i = 0; i < flightList.size(); i++) {
-			if(flightList.get(i).getId() == id) {
-				FlightModel deleted = flightList.get(i);
-				flightDb.deleteById(id);
-				return deleted;
-			}
-		}
-		return null;
+	public FlightModel deleteFlight(String flight_number) {
+		FlightModel deleted = flightDb.findByFlightNumber(flight_number);
+		flightDb.delete(deleted);
+		return deleted;
+	}
+
+	@Override
+	public FlightModel updateFlight(String flight_number, String origin, String destination, String time,
+			String licenseNumber) {
+		flightDb.findByFlightNumber(flight_number).setOrigin(origin);
+		flightDb.findByFlightNumber(flight_number).setDestination(destination);
+		//flightDb.findByFlightNumber(flight_number).setTime(time);
+		//flightDb.findByFlightNumber(flight_number).setPilot(pilotDb.findByLicenseNumber(licenseNumber));
+		FlightModel updated = flightDb.findByFlightNumber(flight_number);
+		return updated;
 	}
 }

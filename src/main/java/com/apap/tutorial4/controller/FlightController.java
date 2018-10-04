@@ -44,11 +44,19 @@ public class FlightController {
 		return "add";
 	}
 	
-	@RequestMapping("flight/delete/{id}")
-	public String deleteFlight(@PathVariable (value = "id") Long id, Model model) {
-		FlightModel deleted = flightService.deleteFlight(id);
-		model.addAttribute("pilot", deleted);
+	@RequestMapping("flight/delete/{flight_number}")
+	public String deleteFlight(@PathVariable (value = "flight_number") String flight_number, Model model) {
+		FlightModel deleted = flightService.deleteFlight(flight_number);
+		model.addAttribute("flight", deleted);
 		model.addAttribute("pilot", deleted.getPilot());
 		return "delete-pilot";
+	}
+	
+	@RequestMapping("/flight/update/flight-number/{flightNumber}/new-origin/{origin}/new-destination/{destination}/new-time/{time}/new-pilot/{pilot}")
+	public String updatePilot(@PathVariable (value = "flightNumber") String flightNumber, @PathVariable String origin, @PathVariable String destination, @PathVariable String time, @PathVariable String licenseNumber, Model model) {
+		FlightModel updated = flightService.updateFlight(flightNumber, origin, destination, time, licenseNumber);
+		model.addAttribute("flight", updated);
+		model.addAttribute("pilot", updated.getPilot());
+		return "update-flight";
 	}
 }

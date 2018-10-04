@@ -31,39 +31,17 @@ public class PilotServiceImpl implements PilotService{
 	}
 
 	@Override
-	public PilotModel deletePilot(Long id) {
-		List<PilotModel> pilotList = pilotDb.findAll();
-		for(int i = 0; i < pilotList.size(); i++) {
-			if(pilotList.get(i).getId() == id) {
-				PilotModel deleted = pilotList.get(i);
-				pilotDb.deleteById(id);
-				return deleted;
-			}
-		}
-		return null;
+	public PilotModel deletePilot(String licenseNumber) {
+		PilotModel deleted = pilotDb.findByLicenseNumber(licenseNumber);
+		pilotDb.delete(deleted);
+		return deleted;
 	}
 
 	@Override
-	public PilotModel updatePilotName(Long id, String name) {
-		List<PilotModel> pilotList = pilotDb.findAll();
-		for(int i = 0; i < pilotList.size(); i++) {
-			if(pilotList.get(i).getId() == id) {
-				pilotList.get(i).setName(name);
-				return pilotList.get(i);
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public PilotModel updatePilotFlyHour(Long id, int flyHour) {
-		List<PilotModel> pilotList = pilotDb.findAll();
-		for(int i = 0; i < pilotList.size(); i++) {
-			if(pilotList.get(i).getId() == id) {
-				pilotList.get(i).setFlyHour(flyHour);
-				return pilotList.get(i);
-			}
-		}
-		return null;
+	public PilotModel updatePilot(String licenseNumber, String name, int flyHour) {
+		pilotDb.findByLicenseNumber(licenseNumber).setName(name);
+		pilotDb.findByLicenseNumber(licenseNumber).setFlyHour(flyHour);
+		PilotModel updated = pilotDb.findByLicenseNumber(licenseNumber);
+		return updated;
 	}
 }

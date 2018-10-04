@@ -10,5 +10,6 @@ import com.apap.tutorial4.model.PilotModel;
  */
 public interface FlightService {
 	void addFlight(FlightModel flight);
-	FlightModel deleteFlight(Long id);
+	FlightModel deleteFlight(String flight_number);
+	FlightModel updateFlight(String flight_number, String origin, String destination, String time, String licenseNumber);
 }

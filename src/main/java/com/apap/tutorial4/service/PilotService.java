@@ -9,8 +9,7 @@ import com.apap.tutorial4.model.PilotModel;
  */
 public interface PilotService {
 	PilotModel getPilotDetailByLicenseNumber(String licenseNumber);
-	PilotModel deletePilot(Long id);
-	PilotModel updatePilotName(Long id, String name);
-	PilotModel updatePilotFlyHour(Long id, int flyHour);
+	PilotModel deletePilot(String licenseNumber);
+	PilotModel updatePilot(String licenseNumber, String name, int flyHour);
 	void addPilot(PilotModel pilot);
 }
