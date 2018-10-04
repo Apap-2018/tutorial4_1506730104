@@ -4,7 +4,7 @@ import com.apap.tutorial4.model.PilotModel;
 
 /**
  * 
- * @author USER
+ * PilotService
  *
  */
 public interface PilotService {

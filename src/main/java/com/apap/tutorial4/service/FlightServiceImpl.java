@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 
- * @author USER
+ * FlightServiceImpl
  *
  */
 @Service
@@ -20,9 +20,6 @@ public class FlightServiceImpl implements FlightService{
 
 	@Override
 	public void addFlight(FlightModel flight) {
-		// TODO Auto-generated method stub
 		flightDb.save(flight);
 	}
-	
-	
 }

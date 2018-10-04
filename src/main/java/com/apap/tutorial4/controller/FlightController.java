@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 
- * @author USER
+ * FlightController
  *
  */
+@Controller
 public class FlightController {
 	@Autowired
 	private FlightService flightService;
@@ -31,13 +33,14 @@ public class FlightController {
 		FlightModel flight = new FlightModel();
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		flight.setPilot(pilot);
+		
 		model.addAttribute("flight", flight);
-		return "addPilot";
+		return "addFlight";
 	}
 	
-	@RequestMapping(value="/pilot/add", method = RequestMethod.POST)
-	private String addPilotSubmit(@ModelAttribute PilotModel pilot) {
-		pilotService.addPilot(pilot);
+	@RequestMapping(value="/flight/add", method = RequestMethod.POST)
+	private String addFlightSubmit(@ModelAttribute FlightModel flight) {
+		flightService.addFlight(flight);
 		return "add";
 	}
 }

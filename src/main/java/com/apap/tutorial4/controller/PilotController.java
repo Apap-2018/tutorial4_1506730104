@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 
- * @author USER
+ * PilotController
  *
  */
+@Controller
 public class PilotController {
 	@Autowired
 	private PilotService pilotService;
@@ -41,6 +42,12 @@ public class PilotController {
 		return "add";
 	}
 	
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	@RequestMapping(value = {"pilot/view/license-number/{licenseNumber}"})
 	public String pathView(@PathVariable Optional<String> licenseNumber, Model model){
 		if (licenseNumber.isPresent()) {

@@ -2,6 +2,7 @@ package com.apap.tutorial4.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,7 +13,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * 
- * @author USER
+ * FlightModel
  *
  */
 @Entity
@@ -47,4 +48,52 @@ public class FlightModel implements Serializable {
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private PilotModel pilot;
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public String getFlightNumber() {
+		return flight_number;
+	}
+	
+	public void setFlightNumber(String flight_number) {
+		this.flight_number = flight_number;
+	}
+	
+	public String getOrigin() {
+		return origin;
+	}
+	
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+	
+	public String getDestination() {
+		return destination;
+	}
+	
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+	
+	public Date getTime() {
+		return time;
+	}
+	
+	public void setTime(Date time) {
+		this.time = time;
+	}
+	
+	public PilotModel getPilot() {
+		return pilot;
+	}
+	
+	public void setPilot(PilotModel pilot) {
+		this.pilot = pilot;
+	}
 }

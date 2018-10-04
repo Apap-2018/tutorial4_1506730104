@@ -4,7 +4,7 @@ import com.apap.tutorial4.model.FlightModel;
 
 /**
  * 
- * @author USER
+ * FlightService
  *
  */
 public interface FlightService {

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 
- * @author USER
+ * PilotServiceImpl
  *
  */
 @Service
@@ -20,14 +20,11 @@ public class PilotServiceImpl implements PilotService{
 	
 	@Override
 	public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
-		// TODO Auto-generated method stub
 		return pilotDb.findByLicenseNumber(licenseNumber);
 	}
 
 	@Override
 	public void addPilot(PilotModel pilot) {
-		// TODO Auto-generated method stub
 		pilotDb.save(pilot);
 	}
-	
 }
