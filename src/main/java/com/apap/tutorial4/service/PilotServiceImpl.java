@@ -42,4 +42,28 @@ public class PilotServiceImpl implements PilotService{
 		}
 		return null;
 	}
+
+	@Override
+	public PilotModel updatePilotName(Long id, String name) {
+		List<PilotModel> pilotList = pilotDb.findAll();
+		for(int i = 0; i < pilotList.size(); i++) {
+			if(pilotList.get(i).getId() == id) {
+				pilotList.get(i).setName(name);
+				return pilotList.get(i);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public PilotModel updatePilotFlyHour(Long id, int flyHour) {
+		List<PilotModel> pilotList = pilotDb.findAll();
+		for(int i = 0; i < pilotList.size(); i++) {
+			if(pilotList.get(i).getId() == id) {
+				pilotList.get(i).setFlyHour(flyHour);
+				return pilotList.get(i);
+			}
+		}
+		return null;
+	}
 }

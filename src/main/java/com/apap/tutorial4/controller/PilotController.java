@@ -57,37 +57,17 @@ public class PilotController {
 		return "delete-pilot";
 	}
 	
-	public String updatePilotName(@PathVariable Optional<String> licenseNumber, @PathVariable Optional<Integer> flyHour, Model model) {
-		if (licenseNumber.isPresent()) {
-			PilotModel archive = pilotService.updatePilotFlyHour(licenseNumber.get(), flyHour.get());
-			
-			if(archive == null) {
-				model.addAttribute("lisensi", licenseNumber.get());
-				return "error-update-flyHour";
-			} else {
-				model.addAttribute("pilot", archive);
-				return "view-pilot-updated";
-			}
-		} else {
-			model.addAttribute("lisensi", licenseNumber.get());
-			return "error-update-flyHour";
-		}
+	@RequestMapping("/pilot/update/id/{id}/new-name/{name}")
+	public String updatePilotName(@PathVariable (value = "id") Long id, @PathVariable String name, Model model) {
+		PilotModel updated = pilotService.updatePilotName(id, name);
+		model.addAttribute("pilot", updated);
+		return "update-pilot";
 	}
 	
-	public String updatePilotFlyHour(@PathVariable Optional<String> licenseNumber, @PathVariable Optional<Integer> flyHour, Model model) {
-		if (licenseNumber.isPresent()) {
-			PilotModel archive = pilotService.updatePilotFlyHour(licenseNumber.get(), flyHour.get());
-			
-			if(archive == null) {
-				model.addAttribute("lisensi", licenseNumber.get());
-				return "error-update-flyHour";
-			} else {
-				model.addAttribute("pilot", archive);
-				return "view-pilot-updated";
-			}
-		} else {
-			model.addAttribute("lisensi", licenseNumber.get());
-			return "error-update-flyHour";
-		}
+	@RequestMapping("/pilot/update/id/{id}/new-fly-hour/{flyHour}")
+	public String updatePilotFlyHour(@PathVariable (value = "id") Long id, @PathVariable int flyHour, Model model) {
+		PilotModel updated = pilotService.updatePilotFlyHour(id, flyHour);
+		model.addAttribute("pilot", updated);
+		return "update-pilot";
 	}
 }
