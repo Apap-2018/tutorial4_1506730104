@@ -1,6 +1,7 @@
 package com.apap.tutorial4.service;
 
 import com.apap.tutorial4.model.FlightModel;
+import com.apap.tutorial4.model.PilotModel;
 
 /**
  * 
@@ -9,4 +10,5 @@ import com.apap.tutorial4.model.FlightModel;
  */
 public interface FlightService {
 	void addFlight(FlightModel flight);
+	FlightModel deleteFlight(Long id);
 }

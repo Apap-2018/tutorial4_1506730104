@@ -42,27 +42,52 @@ public class PilotController {
 		return "add";
 	}
 	
-	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	@RequestMapping(value = {"pilot/view/license-number/{licenseNumber}"})
-	public String pathView(@PathVariable Optional<String> licenseNumber, Model model){
+	@RequestMapping(value = {"pilot/view-pilot/{licenseNumber}"})
+	public String viewPilot(@PathVariable (value = "licenseNumber") String licenseNumber, Model model){
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		model.addAttribute("pilot", pilot);
+		model.addAttribute("pilotFlight", pilot.getPilotFlight());
+		return "view-pilot";
+	}
+	
+	@RequestMapping("pilot/delete/{id}")
+	public String deletePilot(@PathVariable (value = "id") Long id, Model model) {
+		PilotModel deleted = pilotService.deletePilot(id);
+		model.addAttribute("pilot", deleted);
+		return "delete-pilot";
+	}
+	
+	public String updatePilotName(@PathVariable Optional<String> licenseNumber, @PathVariable Optional<Integer> flyHour, Model model) {
 		if (licenseNumber.isPresent()) {
-			PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber.get());
+			PilotModel archive = pilotService.updatePilotFlyHour(licenseNumber.get(), flyHour.get());
 			
 			if(archive == null) {
 				model.addAttribute("lisensi", licenseNumber.get());
-				return "error-view-pilot";
+				return "error-update-flyHour";
 			} else {
 				model.addAttribute("pilot", archive);
-				return "view-pilot";
+				return "view-pilot-updated";
 			}
 		} else {
 			model.addAttribute("lisensi", licenseNumber.get());
-			return "error-view-pilot";
+			return "error-update-flyHour";
+		}
+	}
+	
+	public String updatePilotFlyHour(@PathVariable Optional<String> licenseNumber, @PathVariable Optional<Integer> flyHour, Model model) {
+		if (licenseNumber.isPresent()) {
+			PilotModel archive = pilotService.updatePilotFlyHour(licenseNumber.get(), flyHour.get());
+			
+			if(archive == null) {
+				model.addAttribute("lisensi", licenseNumber.get());
+				return "error-update-flyHour";
+			} else {
+				model.addAttribute("pilot", archive);
+				return "view-pilot-updated";
+			}
+		} else {
+			model.addAttribute("lisensi", licenseNumber.get());
+			return "error-update-flyHour";
 		}
 	}
 }
