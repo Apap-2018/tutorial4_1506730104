@@ -4,15 +4,14 @@
 		<title>View Flight</title>
 	</head>
 	<body>
-		<h2>Informasi Flight</h2><br>
-		<h3 th:text="${flight.id}"></h3>
-		<h3 th:text="${flight.flight_number}"></h3>
+		<h2>Informasi Flight</h2>
+		<h3 th:text="${flight.flightNumber}"></h3>
 		<h3 th:text="${flight.origin}"></h3>
 		<h3 th:text="${flight.destination}"></h3>
 		<h3 th:text="${flight.time}"></h3>
-		<h3>Informasi Pilot</h3><br>
+		<br>
+		<h3>Informasi Pilot</h3>
 		<h3 th:text="'Pilot License Number: ' + ${pilot.licenseNumber}"></h3>
 		<h3 th:text="'Name: ' + ${pilot.name}"></h3>
-		<h3 th:text="'Fly Hour: ' + ${pilot.flyHour}"></h3>
 	</body>
 </html>

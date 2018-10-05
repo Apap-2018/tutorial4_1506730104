@@ -1,9 +1,11 @@
 package com.apap.tutorial4.service;
 
 import com.apap.tutorial4.model.FlightModel;
-import com.apap.tutorial4.model.PilotModel;
+//import com.apap.tutorial4.model.PilotModel;
 import com.apap.tutorial4.repository.FlightDB;
+//import com.apap.tutorial4.repository.PilotDB;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class FlightServiceImpl implements FlightService{
 	@Autowired
 	private FlightDB flightDb;
+	/**
+	 * @Autowired
+	private FlightDB pilotDb;
+	 */
+	
 
 	@Override
 	public void addFlight(FlightModel flight) {
@@ -27,20 +34,20 @@ public class FlightServiceImpl implements FlightService{
 	}
 
 	@Override
-	public FlightModel deleteFlight(String flight_number) {
-		FlightModel deleted = flightDb.findByFlightNumber(flight_number);
-		flightDb.delete(deleted);
+	public FlightModel deleteFlight(String flightNumber) {
+		FlightModel deleted = flightDb.findByFlightNumber(flightNumber);
+		flightDb.delete(flightDb.findByFlightNumber(flightNumber));
 		return deleted;
 	}
 
 	@Override
-	public FlightModel updateFlight(String flight_number, String origin, String destination, String time,
+	public FlightModel updateFlight(String flightNumber, String origin, String destination, Date time,
 			String licenseNumber) {
-		flightDb.findByFlightNumber(flight_number).setOrigin(origin);
-		flightDb.findByFlightNumber(flight_number).setDestination(destination);
-		//flightDb.findByFlightNumber(flight_number).setTime(time);
-		//flightDb.findByFlightNumber(flight_number).setPilot(pilotDb.findByLicenseNumber(licenseNumber));
-		FlightModel updated = flightDb.findByFlightNumber(flight_number);
+		flightDb.findByFlightNumber(flightNumber).setOrigin(origin);
+		flightDb.findByFlightNumber(flightNumber).setDestination(destination);
+		flightDb.findByFlightNumber(flightNumber).setTime(time);
+		//flightDb.findByFlightNumber(flightNumber).setPilot(pilotDb.findByLicenseNumber(licenseNumber));
+		FlightModel updated = flightDb.findByFlightNumber(flightNumber);
 		return updated;
 	}
 
@@ -48,4 +55,11 @@ public class FlightServiceImpl implements FlightService{
 	public FlightModel getFlightDetailByFlightNumber(String flightNumber) {
 		return flightDb.findByFlightNumber(flightNumber);
 	}
+	/**
+	 * 
+	 * @Override
+	public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
+		return pilotDb.findByLicenseNumber(licenseNumber);
+	}
+	 */
 }

@@ -26,8 +26,8 @@ public class FlightModel implements Serializable {
 	
 	@NotNull
 	@Size(max = 50)
-	@Column(name = "flight_number", nullable = false)
-	private String flight_number;
+	@Column(name = "flightNumber", nullable = false)
+	private String flightNumber;
 	
 	@NotNull
 	@Size(max = 50)
@@ -44,7 +44,7 @@ public class FlightModel implements Serializable {
 	private Date time;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pilot_licenseNumber", referencedColumnName = "license_number", nullable = false)
+	@JoinColumn(name = "pilot_license_number", referencedColumnName = "license_number", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private PilotModel pilot;
@@ -58,11 +58,11 @@ public class FlightModel implements Serializable {
 	}
 	
 	public String getFlightNumber() {
-		return flight_number;
+		return flightNumber;
 	}
 	
-	public void setFlightNumber(String flight_number) {
-		this.flight_number = flight_number;
+	public void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
 	}
 	
 	public String getOrigin() {

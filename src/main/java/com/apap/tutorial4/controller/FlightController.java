@@ -5,6 +5,8 @@ import com.apap.tutorial4.service.PilotService;
 import com.apap.tutorial4.model.FlightModel;
 import com.apap.tutorial4.service.FlightService;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,16 +46,16 @@ public class FlightController {
 		return "add";
 	}
 	
-	@RequestMapping("flight/delete/{flight_number}")
-	public String deleteFlight(@PathVariable (value = "flight_number") String flight_number, Model model) {
-		FlightModel deleted = flightService.deleteFlight(flight_number);
+	@RequestMapping("flight/delete/{flightNumber}")
+	public String deleteFlight(@PathVariable (value = "flightNumber") String flightNumber, Model model) {
+		FlightModel deleted = flightService.deleteFlight(flightNumber);
 		model.addAttribute("flight", deleted);
 		model.addAttribute("pilot", deleted.getPilot());
-		return "delete-pilot";
+		return "delete-flight";
 	}
 	
 	@RequestMapping("/flight/update/flight-number/{flightNumber}/new-origin/{origin}/new-destination/{destination}/new-time/{time}/new-pilot/{pilot}")
-	public String updatePilot(@PathVariable (value = "flightNumber") String flightNumber, @PathVariable String origin, @PathVariable String destination, @PathVariable String time, @PathVariable String licenseNumber, Model model) {
+	public String updateFlight(@PathVariable (value = "flightNumber") String flightNumber, @PathVariable String origin, @PathVariable String destination, @PathVariable Date time, @PathVariable String licenseNumber, Model model) {
 		FlightModel updated = flightService.updateFlight(flightNumber, origin, destination, time, licenseNumber);
 		model.addAttribute("flight", updated);
 		model.addAttribute("pilot", updated.getPilot());
