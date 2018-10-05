@@ -1,0 +1,16 @@
+Latihan
+
+1. Ubah method view pilot agar menampilkan daftar flight yang terdaftar untuk setiap
+pilot​.
+iterasi atribut pilot berupa list dari flight yang dilakukan oleh pilot dan menampilkan each flight ke view.
+ 
+2. Buatlah fitur delete​ untuk menghapus seorang pilot dan sebuah penerbangan.
+mencari entity pilot/flight dari dalam db menggunakan findByLicenseNumber/findByFlightNumber lalu mendelete entity tersebut. 
+
+3. Buatlah fitur update​ untuk seorang pilot dan sebuah penerbangan.
+(Notes: License Number seorang pilot tidak bisa diubah)
+mencari entity pilot/flight dari dalam db menggunakan findByLicenseNumber/findByFlightNumber lalu melakukan set atribut-atribut yang perlu diubah dan mendelete entity tersebut. 
+
+4. Buatlah fitur ​untuk melihat ​penerbangan sehingga dapat menampilkan nama dan license
+number dari pilot yang bertugas.
+sama seperti view-pilot, ambil flight dari db berdasarkan flight number dan tampilkan atribut-atributnya di view.
