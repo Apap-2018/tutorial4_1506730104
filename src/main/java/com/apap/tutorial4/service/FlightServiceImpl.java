@@ -43,4 +43,9 @@ public class FlightServiceImpl implements FlightService{
 		FlightModel updated = flightDb.findByFlightNumber(flight_number);
 		return updated;
 	}
+
+	@Override
+	public FlightModel getFlightDetailByFlightNumber(String flightNumber) {
+		return flightDb.findByFlightNumber(flightNumber);
+	}
 }

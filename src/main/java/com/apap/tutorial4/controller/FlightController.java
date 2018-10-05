@@ -59,4 +59,12 @@ public class FlightController {
 		model.addAttribute("pilot", updated.getPilot());
 		return "update-flight";
 	}
+	
+	@RequestMapping(value = {"flight/view-flight/{flightNumber}"})
+	public String viewFlight(@PathVariable (value = "flightNumber") String flightNumber, Model model){
+		FlightModel flight = flightService.getFlightDetailByFlightNumber(flightNumber);
+		model.addAttribute("flight", flight);
+		model.addAttribute("pilot", flight.getPilot());
+		return "view-flight";
+	}
 }
