@@ -54,9 +54,9 @@ public class FlightController {
 		return "delete-flight";
 	}
 	
-	@RequestMapping("/flight/update/flight-number/{flightNumber}/new-origin/{origin}/new-destination/{destination}/new-time/{time}/new-pilot/{pilot}")
-	public String updateFlight(@PathVariable (value = "flightNumber") String flightNumber, @PathVariable String origin, @PathVariable String destination, @PathVariable Date time, @PathVariable String licenseNumber, Model model) {
-		FlightModel updated = flightService.updateFlight(flightNumber, origin, destination, time, licenseNumber);
+	@RequestMapping("/flight/update/flight-number/{flightNumber}/new-origin/{origin}/new-destination/{destination}/new-time/{time}")
+	public String updateFlight(@PathVariable (value = "flightNumber") String flightNumber, @PathVariable String origin, @PathVariable String destination, @PathVariable Date time, Model model) {
+		FlightModel updated = flightService.updateFlight(flightNumber, origin, destination, time);
 		model.addAttribute("flight", updated);
 		model.addAttribute("pilot", updated.getPilot());
 		return "update-flight";

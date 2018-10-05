@@ -13,7 +13,7 @@ import com.apap.tutorial4.model.FlightModel;
 public interface FlightService {
 	void addFlight(FlightModel flight);
 	FlightModel deleteFlight(String flightNumber);
-	FlightModel updateFlight(String flightNumber, String origin, String destination, Date time, String licenseNumber);
+	FlightModel updateFlight(String flightNumber, String origin, String destination, Date time);
 	FlightModel getFlightDetailByFlightNumber(String flightNumber);
 	//PilotModel getPilotDetailByLicenseNumber(String licenseNumber);
 }

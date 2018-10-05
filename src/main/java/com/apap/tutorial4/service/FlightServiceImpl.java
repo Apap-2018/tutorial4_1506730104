@@ -41,8 +41,7 @@ public class FlightServiceImpl implements FlightService{
 	}
 
 	@Override
-	public FlightModel updateFlight(String flightNumber, String origin, String destination, Date time,
-			String licenseNumber) {
+	public FlightModel updateFlight(String flightNumber, String origin, String destination, Date time) {
 		flightDb.findByFlightNumber(flightNumber).setOrigin(origin);
 		flightDb.findByFlightNumber(flightNumber).setDestination(destination);
 		flightDb.findByFlightNumber(flightNumber).setTime(time);
