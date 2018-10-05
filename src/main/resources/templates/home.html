@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Home</title>
+		<title>SI APAP Airline</title>
 	</head>
 	<body>
-		<h2>Hello!</h2>
+		<h1>SI APAP Airline!</h1>
 		
-		<h3>Tambah Pilot</h3>
-		<td><a th:href="@{/pilot/add}">Tambah</a></td>
+		<h2>Tambah Pilot</h2>
+		<button type="button"><a th:href="@{/pilot/add}">Tambah</a></button>
 		
-		<h3>Cari Pilot berdasarkan Nomor Lisensi</h3>
-		<form th:action="@{/pilot/view}" method="GET">
+		<h2>Cari Pilot berdasarkan Nomor Lisensi</h2>
+		<form th:action="@{/pilot/view-pilot}" method="GET">
 			License Number: <br>
-			<input type="text" name="licenseNumber" />
+			<input type="text" name="licenseNumber"/>
 			<button type="submit">Cari</button>
 		</form>
 	</body>

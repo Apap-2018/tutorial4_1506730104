@@ -42,23 +42,23 @@ public class PilotController {
 		return "add";
 	}
 	
-	@RequestMapping(value = {"pilot/view-pilot/{licenseNumber}"})
-	public String viewPilot(@PathVariable (value = "licenseNumber") String licenseNumber, Model model){
+	@RequestMapping(value = "pilot/view-pilot", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model){
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		model.addAttribute("pilot", pilot);
 		model.addAttribute("pilotFlight", pilot.getPilotFlight());
 		return "view-pilot";
 	}
 	
-	@RequestMapping("pilot/delete/{licenseNumber}")
-	public String deletePilot(@PathVariable (value = "licenseNumber") String licenseNumber, Model model) {
+	@RequestMapping(value = "pilot/delete", method = RequestMethod.POST)
+	public String deletePilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
 		PilotModel deleted = pilotService.deletePilot(licenseNumber);
 		model.addAttribute("pilot", deleted);
 		return "delete-pilot";
 	}
 	
-	@RequestMapping("/pilot/update/license-number/{licenseNumber}/new-name/{name}/new-fly-hour/{flyHour}")
-	public String updatePilot(@PathVariable (value = "licenseNumber") String licenseNumber, @PathVariable String name, @PathVariable int flyHour, Model model) {
+	@RequestMapping(value = "/pilot/update", method = RequestMethod.POST)
+	public String updatePilot(@RequestParam("licenseNumber") String licenseNumber, @RequestParam("name") String name, @RequestParam("flyHour") int flyHour, Model model) {
 		PilotModel updated = pilotService.updatePilot(licenseNumber, name, flyHour);
 		model.addAttribute("pilot", updated);
 		return "update-pilot";
